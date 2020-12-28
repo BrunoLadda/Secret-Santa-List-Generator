@@ -10,6 +10,10 @@ Application rules
 - An participant cannot give gift for himself
 - Every time the user add or remove a participant, the Secret Santa list is deleted, so it can be recreated.
 
+Future implementations:
+- Add real participants
+- Send notifications to participants with their pairs
+- Add possibility to set a sugested gift for each participant
 
 ## Project setup
 ```
