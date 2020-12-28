@@ -8,7 +8,7 @@ Application rules
 - The list can only be generated if we have at least 3 participants.
 - Each participant must receive and give one gift.
 - An participant cannot give gift for himself
-- Every time you add or remove a participant, we delete the Secret Santa list, so it can be recreated.
+- Every time the user add or remove a participant, the Secret Santa list is deleted, so it can be recreated.
 
 
 ## Project setup
