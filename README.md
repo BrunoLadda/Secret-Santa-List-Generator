@@ -3,7 +3,6 @@
 - Axios for user API query.
 - As it is a knowledge assessment (including CSS and HTML), it was decided not to use any design framework like Vuetify or Vue Material, neither ready components.
 
-
 Application rules
 - The list can only be generated if we have at least 3 participants.
 - Each participant must receive and give one gift.
@@ -11,9 +10,11 @@ Application rules
 - Every time the user add or remove a participant, the Secret Santa list is deleted, so it can be recreated.
 
 Future implementations:
-- Add real participants
-- Send notifications to participants with their pairs
+- Add real participants (form validations)
+- Send notifications to participants informing their pairs
 - Add possibility to set a sugested gift for each participant
+- Layout improvements
+- Implement test with Jest
 
 ## Project setup
 ```

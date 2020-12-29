@@ -4,21 +4,21 @@
       <h3>Secret Santa List</h3>
     </div>
     <div class="list">
-      <div class="column">
+      <div class="column-big">
         <ul class="ul">
           <li class="li" v-for="item in getListGiver" :key="item.id">
             {{ item.name }}
           </li>
         </ul>
       </div>
-      <div class="column">
+      <div class="column-small">
         <ul class="ul">
           <li class="li" v-for="item in getListReceiver" :key="item.id">
             ===>
           </li>
         </ul>
       </div>
-      <div class="column">
+      <div class="column-big">
         <ul class="ul">
           <li class="li" v-for="item in getListReceiver" :key="item.id">
             {{ item.name }}
