@@ -70,7 +70,7 @@ export const participantsList = {
                 conflits.forEach(old_index => {
                     var new_index = -1;
 
-                    //As we are changin the Receiver list on "foreach" loop, we need to check if the conflit was already resolved. 
+                    //As we are changing the ListReceiver on "foreach" loop, we need to check if the conflit was already resolved. 
                     if (state.listGiver[old_index].email == state.listReceiver[old_index].email) {
 
                         while (new_index == -1) {
@@ -78,7 +78,7 @@ export const participantsList = {
                             //Generating a random number between 0 and the lenght of participants list
                             new_index = Math.floor(Math.random() * (state.listGiver.length - 1) + 1) - 1;
 
-                            //If the new random index is equal to old index, we generate another
+                            //If the new index is equal to old, we generate another
                             if (old_index == new_index) {
                                 new_index = -1;
                             }
