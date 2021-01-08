@@ -48,7 +48,7 @@ export const participantsList = {
 
 
             //Review Comment: 
-            //Other options were considered to generate a sorted list, but the way above (using map and sort) is a good option considering performance, and the application's rules (Each user must receive and give 1 gift).
+            //Other options were considered to generate a sorted list, but the way above (using map and sort) is a good option considering performance (for small or large number of elements), and the application's rules (Each user must receive and give 1 gift).
             //For this reason, I chose to keep this way of generating the main list, changing only the validation process below.
 
 
@@ -78,7 +78,7 @@ export const participantsList = {
                             //Generating a random number between 0 and the lenght of participants list
                             new_index = Math.floor(Math.random() * (state.listGiver.length - 1) + 1) - 1;
 
-                            //If the new index is equal to old, we generate another
+                            //If the new index is equal to the old, we generate another
                             if (old_index == new_index) {
                                 new_index = -1;
                             }
