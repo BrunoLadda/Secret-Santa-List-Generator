@@ -46,25 +46,51 @@ export const participantsList = {
                 .sort((a, b) => a.sort - b.sort)
                 .map((a) => a.value)
 
-            //List validation: avoid a participant gives a gift for himself
-            var listOk = false
-            while (!listOk) {
-                //This loop will not end until we have a list that attend the rules
-                var error = false
-                for (let index = 0; index < state.listGiver.length; index++) {
-                    //We use the e-mail to identify the participant, as we could have some homonyms in the list 
-                    if (state.listGiver[index].email == state.listReceiver[index].email) {
-                        error = true
-                        state.listReceiver.splice(0)
-                        state.listReceiver = state.listGiver
-                            .map((a) => ({ sort: Math.random(), value: a }))
-                            .sort((a, b) => a.sort - b.sort)
-                            .map((a) => a.value)
-                        break
-                    }
+
+            //Review Comment: 
+            //Other options were considered to generate a sorted list, but the way above (using map and sort) is a good option considering performance, and the application's rules (Each user must receive and give 1 gift).
+            //For this reason, I chose to keep this way of generating the main list, changing only the validation process below.
+
+
+            //Creating new array to handle the conflits. This array is a list indexes where we found same participant.
+            var conflits = [];
+
+            //Searching for conflits (participant giving a gift for himself)
+            for (let index = 0; index < state.listGiver.length; index++) {
+                //We use the e-mail to identify the participant, as we could have some homonyms in the list 
+                if (state.listGiver[index].email == state.listReceiver[index].email) {
+                    conflits.push(index);
                 }
-                if (!error)
-                    listOk = true
+            }
+
+            //If we dont have any conflict, we can keep the list as it is.
+            if (conflits.length != 0) {
+
+                //If we have conflits, we loop into conflits list to change it's index.
+                conflits.forEach(old_index => {
+                    var new_index = -1;
+
+                    //As we are changin the Receiver list on "foreach" loop, we need to check if the conflit was already resolved. 
+                    if (state.listGiver[old_index].email == state.listReceiver[old_index].email) {
+
+                        while (new_index == -1) {
+
+                            //Generating a random number between 0 and the lenght of participants list
+                            new_index = Math.floor(Math.random() * (state.listGiver.length - 1) + 1) - 1;
+
+                            //If the new random index is equal to old index, we generate another
+                            if (old_index == new_index) {
+                                new_index = -1;
+                            }
+                            else {
+                                //If the index can be used, than we change the elements on ListReceiver.
+                                var changed = state.listReceiver[old_index];
+                                state.listReceiver[old_index] = state.listReceiver[new_index];
+                                state.listReceiver[new_index] = changed;
+                            }
+                        }
+                    }
+                });
             }
         },
         CLEAR_LISTS(state) {
